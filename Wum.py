@@ -183,6 +183,7 @@ while not juego_ganado(tablero2):
                         print("Has matado al Wumpuz")
                         tablero2[flechaX][flechaY] = "  "
                         tablero[flechaX][flechaY] = "XX"
+                        tablero2[flechaX][flechaY] = "XX"
                         imprimir_tablero(tablero)
                     else:
                         tablero[flechaX][flechaY] = "^ " 
@@ -198,6 +199,7 @@ while not juego_ganado(tablero2):
                         print("Has matado al Wumpuz")
                         tablero2[flechaX][flechaY] = "  "
                         tablero[flechaX][flechaY] = "XX"
+                        tablero2[flechaX][flechaY] = "XX"
                         imprimir_tablero(tablero)
                     else:
                         tablero[flechaX][flechaY] = "v " 
@@ -212,6 +214,7 @@ while not juego_ganado(tablero2):
                         print("Has matado al Wumpuz")
                         tablero2[flechaX][flechaY] = "  "
                         tablero[flechaX][flechaY] = "XX"
+                        tablero2[flechaX][flechaY] = "XX"
                         imprimir_tablero(tablero)
                     else:
                         tablero[flechaX][flechaY] = "< " 
@@ -226,6 +229,7 @@ while not juego_ganado(tablero2):
                         print("Has matado al Wumpuz")
                         tablero2[flechaX][flechaY] = "  "
                         tablero[flechaX][flechaY] = "XX"
+                        tablero2[flechaX][flechaY] = "XX"
                         imprimir_tablero(tablero)
                     else:
                         tablero[flechaX][flechaY] = "> " 
