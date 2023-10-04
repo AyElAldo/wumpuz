@@ -108,8 +108,9 @@ preparar_tablero(tablero2)
 numMov=0
 
 # Juego principal
+flecha_disponible = True
 while not juego_ganado(tablero2):
-
+    
     imprimir_tablero(tablero)
     #imprimir_tablero(tablero2)
 
@@ -117,7 +118,7 @@ while not juego_ganado(tablero2):
     hedor(tablero2)
     encontrar_tesoro(tablero2)
 
-    movimiento = input("Ingresa una dirección (arriba (W), abajo (S), izquierda (A), derecha (D)): ")
+    movimiento = input("Ingresa una dirección (arriba (W), abajo (S), izquierda (A), derecha (D) o DISPARA (F)): ")
 
     player_x, player_y = encontrar_jugador(tablero)
 
@@ -126,7 +127,7 @@ while not juego_ganado(tablero2):
             print("\n\t\tTe ha matado el Wumpus. Perdiste")
             break
         elif tablero2[player_x - 1][player_y] == "H ":
-            print("\n\t\tHas caído en un pozo. Perdiste")
+            print("\n\t\tHas caído en un hoyo. Perdiste")
             break
         else:
             tablero[player_x - 1][player_y] = "A "
@@ -138,7 +139,7 @@ while not juego_ganado(tablero2):
             print("\n\t\tTe ha matado el Wumpus. Perdiste")
             break
         elif tablero2[player_x + 1][player_y] == "H ":
-            print("\n\t\tHas caído en un pozo. Perdiste")
+            print("\n\t\tHas caído en un hoyo. Perdiste")
             break
         else:
             tablero[player_x + 1][player_y] = "A "
@@ -169,6 +170,78 @@ while not juego_ganado(tablero2):
             tablero[player_x][player_y] = "  "
             tablero2[player_x][player_y + 1] = "A "
             tablero2[player_x][player_y] = "  "
+    elif (movimiento == "f" or movimiento == "F"):
+        if flecha_disponible:
+            disparo_direccion = input("Ingresa una dirección para disparar (arriba (W), abajo (S), izquierda (A), derecha (D)): ")
+            
+            # Direccion de disparo
+            if (disparo_direccion == "w" or disparo_direccion == "W") and player_x > 0 and player_x < 4:
+                flechaX, flechaY = encontrar_jugador(tablero)
+                flechaX -= 1
+                while flechaX >= 0:
+                    if tablero2[flechaX][flechaY] == "W ":
+                        print("Has matado al Wumpuz")
+                        tablero2[flechaX][flechaY] = "  "
+                        tablero[flechaX][flechaY] = "XX"
+                        imprimir_tablero(tablero)
+                    else:
+                        tablero[flechaX][flechaY] = "^ " 
+                        imprimir_tablero(tablero)
+                        tablero[flechaX][flechaY] = "  " 
+                    flechaX -=1
+                
+            elif (disparo_direccion == "s" or disparo_direccion == "S") and player_x >= 0 and player_x < 3: #abajo
+                flechaX, flechaY = encontrar_jugador(tablero)
+                flechaX += 1
+                while flechaX <= 3:
+                    if tablero2[flechaX][flechaY] == "W ":
+                        print("Has matado al Wumpuz")
+                        tablero2[flechaX][flechaY] = "  "
+                        tablero[flechaX][flechaY] = "XX"
+                        imprimir_tablero(tablero)
+                    else:
+                        tablero[flechaX][flechaY] = "v " 
+                        imprimir_tablero(tablero)
+                        tablero[flechaX][flechaY] = "  " 
+                    flechaX +=1
+            elif (disparo_direccion == "a" or disparo_direccion == "A") and player_y > 0 and player_y < 4: #izquierda
+                flechaX, flechaY = encontrar_jugador(tablero)
+                flechaY -= 1
+                while flechaY >= 0:
+                    if tablero2[flechaX][flechaY] == "W ":
+                        print("Has matado al Wumpuz")
+                        tablero2[flechaX][flechaY] = "  "
+                        tablero[flechaX][flechaY] = "XX"
+                        imprimir_tablero(tablero)
+                    else:
+                        tablero[flechaX][flechaY] = "< " 
+                        imprimir_tablero(tablero)
+                        tablero[flechaX][flechaY] = "  " 
+                    flechaY -=1
+            elif (disparo_direccion == "d" or disparo_direccion == "D") and player_y >= 0 and player_y < 3: #derecha
+                flechaX, flechaY = encontrar_jugador(tablero)
+                flechaY += 1
+                while flechaY <= 3:
+                    if tablero2[flechaX][flechaY] == "W ":
+                        print("Has matado al Wumpuz")
+                        tablero2[flechaX][flechaY] = "  "
+                        tablero[flechaX][flechaY] = "XX"
+                        imprimir_tablero(tablero)
+                    else:
+                        tablero[flechaX][flechaY] = "> " 
+                        imprimir_tablero(tablero)
+                        tablero[flechaX][flechaY] = "  " 
+                    flechaY +=1
+            else:
+                print("Opcion no valida.")
+                if flecha_disponible:
+                    print("Sigue disponible")
+                continue
+            
+            #flecha_disponible = False # Prueba
+            pass
+        else:
+            print("Ya usaste la flecha.")
     else:
         print("Movimiento no válido. Intenta de nuevo.")
 imprimir_tablero(tablero2)
