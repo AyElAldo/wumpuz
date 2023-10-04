@@ -238,8 +238,8 @@ while not juego_ganado(tablero2):
                     print("Sigue disponible")
                 continue
             
-            #flecha_disponible = False # Prueba
-            pass
+            flecha_disponible = False # Funcionalidad para una sola flecha 
+            
         else:
             print("Ya usaste la flecha.")
     else:
